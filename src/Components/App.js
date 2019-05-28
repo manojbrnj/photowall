@@ -1,7 +1,7 @@
 import Main from './Main'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {removePost, addPost, addComment} from '../redux/actions'
+import * as actions from '../redux/actions'
 import {withRouter} from 'react-router'
 
 function mapStateToProps(state){
@@ -12,7 +12,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({removePost, addPost, addComment}, dispatch)
+    return bindActionCreators(actions, dispatch)
 }
 
 const App = withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))
