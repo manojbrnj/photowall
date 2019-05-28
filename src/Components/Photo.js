@@ -11,10 +11,10 @@ function Photo(props){
                     <p>{post.description}</p>
                 </figcaption>
                 <div className="button-container">
-                    <button className="remove-button" onClick={()=>{
+                    <Link className="button" to="" onClick={()=>{
                         props.startRemovingPost(props.index, post.id)
                         props.history.push('/')
-                    }}>Remove</button>
+                    }}>Remove</Link>
                     <Link className="button" to={'/Single/'+post.id}>
                         <div className="comment-count">
                             <div className="speech-bubble"></div>

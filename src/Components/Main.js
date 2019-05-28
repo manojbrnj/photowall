@@ -10,8 +10,9 @@ class Main extends Component{
   state = {loading: true}
 
   componentDidMount(){
-    this.props.startLoadingPost().then(()=>{ this.setState({loading: false})})
-    this.props.startLoadingComments()
+    this.props.startLoadingPost()
+    this.props.startLoadingComments().then(()=>{ this.setState({loading: false})})
+    //this.props.startTesting();
   }
 
   render() {

@@ -1,9 +1,10 @@
 import {database} from '../database/config'
+import { jsxClosingElement } from '@babel/types';
 
 export function startAddingPost(post){
     return(dispatch) => {
         return database.ref('posts').update({[post.id]: post}).then(() => {
-            dispatch(addPost(post))
+            //dispatch(addPost(post))
         }).catch((error) => {
             console.log(error)
         })
@@ -12,14 +13,12 @@ export function startAddingPost(post){
 
 export function startLoadingPost() {
     return(dispatch) => {
-        return database.ref('posts').once('value').then((snapshot) => {
+        return database.ref().child('posts').on('value', snapshot => {
             let posts = []
             snapshot.forEach((childSnapshot) => {
                 posts.push(childSnapshot.val())
             })
             dispatch(loadPosts(posts))
-        }).catch((error) => {
-            console.log(error)
         })
     }
 }
@@ -98,4 +97,9 @@ export function loadPosts(posts){
         type: 'LOAD_POSTS',
         posts
     }
+}
+
+export function startTesting(){
+    console.log('startTesting')
+
 }
