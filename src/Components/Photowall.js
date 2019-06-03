@@ -5,8 +5,7 @@ import {Link} from 'react-router-dom'
 
 function Photowall(props){
     return <div>
-                <Link className="addIcon" to="/AddPhoto"></Link>
-                <div className="photoGrid">
+                <div className="photoGrid row">
                     {props.posts.sort((a,b) =>{return b.id - a.id}).map((post, index) => <Photo key={index} post={post} {...props} index={index} />)}
                 </div>
             </div>

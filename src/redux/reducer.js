@@ -24,6 +24,13 @@ function posts(state = _posts, action){
     }
 }
 
-const rootReducer = combineReducers({posts, comments})
+function user(state = {}, action){
+    switch(action.type){
+        case 'SET_LOGGED_USER': return action.user
+        default: return state
+    }
+}
+
+const rootReducer = combineReducers({posts, comments, user})
 
 export default rootReducer;

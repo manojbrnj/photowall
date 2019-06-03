@@ -4,6 +4,7 @@ import Photowall from './Photowall'
 import AddPhoto from './AddPhoto';
 import {Route} from 'react-router-dom';
 import Single from './Single'
+import Login from './Login'
 
 class Main extends Component{
 
@@ -17,8 +18,15 @@ class Main extends Component{
 
   render() {
     return (
-      <div className="Main">
-        <Title title="Photowall" />
+      <div className="Main container-fluid">
+        <Title title="Photowall" {...this.props} />
+
+        <Route path="/Login" render={() => (
+          <div>
+            <Login {...this.props} />
+          </div>
+        )} />
+
         <Route exact path="/" render={() => (
           <div>
             <Photowall {...this.props} />

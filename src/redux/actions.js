@@ -1,6 +1,4 @@
-import {database} from '../database/config'
-import { jsxClosingElement } from '@babel/types';
-
+import {database, auth} from '../database/config'
 export function startAddingPost(post){
     return(dispatch) => {
         return database.ref('posts').update({[post.id]: post}).then(() => {
@@ -99,7 +97,35 @@ export function loadPosts(posts){
     }
 }
 
-export function startTesting(){
-    console.log('startTesting')
+export function LoginWithFirebase(email, password){
+    return(dispatch) => {
+        return auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+            alert(error.message)
+        }).then(() => {
+            console.log(auth.currentUser);
+            dispatch(setUserData(auth.currentUser))
+        })
+    }
+}
 
+export function startTesting(){
+    return(dispatch) => {
+        return auth.onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              console.log('user login')
+              dispatch(setUserData(user))
+            } else {
+              // User is signed out.
+              console.log('user signed out')
+            }
+          });
+    }
+}
+
+export function setUserData(user){
+    return{
+        type: 'SET_LOGGED_USER',
+        user
+    }
 }
