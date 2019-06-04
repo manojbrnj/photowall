@@ -1,4 +1,4 @@
-import {database, auth} from '../database/config'
+import {database, auth, googleProvider} from '../database/config'
 export function startAddingPost(post){
     return(dispatch) => {
         return database.ref('posts').update({[post.id]: post}).then(() => {
@@ -105,6 +105,31 @@ export function LoginWithFirebase(email, password){
             console.log(auth.currentUser);
             dispatch(setUserData(auth.currentUser))
         })
+    }
+}
+
+export function LoginWithGoogle(){
+    return(dispatch) => {
+        return auth.signInWithPopup(googleProvider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+            console.log('User from Google');
+            console.log(JSON.stringify(user));
+            dispatch(setUserData(user))
+          }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+            console.log(JSON.stringify(error));
+          });
     }
 }
 

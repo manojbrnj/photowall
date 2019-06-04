@@ -24,10 +24,15 @@ class Comments extends Component{
                     )
                 })
             }
+            {
+                this.props.user? 
                 <form className="comment-form" onSubmit={this.handleSubmit}>
                     <input type="text" placeholder="comment" name="comment"></input>
                     <input type="submit"></input>
                 </form>
+                :
+                ''
+            }
             </div>
         )
     }
