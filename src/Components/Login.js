@@ -5,6 +5,7 @@ class Login extends Component{
     constructor(){
         super()
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.loginWithGoogle = this.loginWithGoogle.bind(this)
     }
     handleSubmit(event){
         event.preventDefault();

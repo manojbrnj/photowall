@@ -9,6 +9,6 @@ import thunk from 'redux-thunk'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/Styles.css'
 
-const store = createStore(rootReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(<Provider store={store}><BrowserRouter><App/></BrowserRouter></Provider>, document.getElementById('root'));
