@@ -10,12 +10,12 @@ class Title extends Component{
                     <nav className="navbar navbar-light bg-light">
                         <h1><Link to="/">{this.props.title}</Link></h1>
                         {
-                            this.props.user ?
+                            this.props.user.email ?
                                 <Link className="add-photo btn btn-primary" to="/AddPhoto">Add Photo</Link> : ''
                             
                         }
                         {
-                        !this.props.user? <Link className="" to="/Login"><span className="logInIcon"></span></Link> : <span>{this.props.user.email}</span>
+                        !this.props.user.email? <Link className="" to="/Login"><span className="logInIcon"></span></Link> : <span>{this.props.user.email}</span>
                         }
                     </nav>
                 </div>
